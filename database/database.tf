@@ -38,5 +38,6 @@ resource "azurerm_postgresql_server" "postgresql" {
   auto_grow_enabled            = local.env.auto_grow_enabled
 
   public_network_access_enabled    = local.env.public_network_access_enabled
+  ssl_enforcement_enabled          = true
 
 }
