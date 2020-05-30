@@ -53,11 +53,9 @@ resource "azurerm_app_service_plan" "default" {
   kind                = "Linux"
 
   sku {
-    tier = local.appservice.plan_tier
-    size = local.appservice.plan_size
+    tier = "Basic"
+    size = "B1"
   }
-
-  tags = local.tags
 }
 
 resource "azurerm_app_service" "myapp" {
@@ -84,6 +82,4 @@ resource "azurerm_app_service" "myapp" {
       site_config.0.linux_fx_version, # deployments are made outside of Terraform
     ]
   }
-
-  tags = local.tags
 }
