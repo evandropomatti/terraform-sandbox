@@ -2,12 +2,12 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" {
+resource "azurerm_resource_group" "group" {
   name     = var.group
   location = var.location
 }
 
-resource "azurerm_postgresql_server" {
+resource "azurerm_postgresql_server" "postgresql" {
   name                = var.name
   location            = var.location
   resource_group_name = var.group
