@@ -1,6 +1,10 @@
+variable "TFC_WORKSPACE_NAME" {
+  type = string
+}
+
 locals {
   env = merge(
-    yamldecode(file("env/${terraform.workspace}.yaml"))
+    yamldecode(file("env/${var.TFC_WORKSPACE_NAME}.yaml"))
   )
 }
 
