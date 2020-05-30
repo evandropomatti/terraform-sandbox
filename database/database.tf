@@ -16,6 +16,11 @@ provider "azurerm" {
   features {}
 }
 
+resource "azurerm_resource_group" "group" {
+  name     = local.env.group
+  location = local.env.location
+}
+
 resource "azurerm_postgresql_server" "postgresql" {
   name                = local.env.name
   location            = local.env.location
@@ -34,5 +39,9 @@ resource "azurerm_postgresql_server" "postgresql" {
 
   public_network_access_enabled    = local.env.public_network_access_enabled
   ssl_enforcement_enabled          = true
+
+  depends_on = [
+    azurerm_resource_group.group,
+  ]
 
 }
