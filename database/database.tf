@@ -13,26 +13,26 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "group" {
-  name     = env.group
-  location = env.location
+  name     = local.env.group
+  location = local.env.location
 }
 
 resource "azurerm_postgresql_server" "postgresql" {
-  name                = env.name
-  location            = env.location
-  resource_group_name = env.group
+  name                = local.env.name
+  location            = local.env.location
+  resource_group_name = local.env.group
 
-  administrator_login          = env.username
+  administrator_login          = local.env.username
   administrator_login_password = var.password
 
-  sku_name   = env.sku_name
-  version    = env.version
-  storage_mb = env.storage
+  sku_name   = local.env.sku_name
+  version    = local.env.version
+  storage_mb = local.env.storage
 
-  backup_retention_days        = env.backup_retention_days
-  geo_redundant_backup_enabled = env.geo_redundant_backup_enabled
-  auto_grow_enabled            = env.auto_grow_enabled
+  backup_retention_days        = local.env.backup_retention_days
+  geo_redundant_backup_enabled = local.env.geo_redundant_backup_enabled
+  auto_grow_enabled            = local.env.auto_grow_enabled
 
-  public_network_access_enabled    = env.public_network_access_enabled
+  public_network_access_enabled    = local.env.public_network_access_enabled
 
 }
