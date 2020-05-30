@@ -31,7 +31,7 @@ resource "azurerm_postgresql_server" "postgresql" {
 
   sku_name   = local.env.sku_name
   version    = local.env.version
-  storage_mb = local.env.storage
+  storage_mb = local.env.storage_mb
 
   backup_retention_days        = local.env.backup_retention_days
   geo_redundant_backup_enabled = local.env.geo_redundant_backup_enabled
