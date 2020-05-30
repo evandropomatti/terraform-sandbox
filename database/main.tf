@@ -1,3 +1,7 @@
+variable "CONTAINER_REGISTRY_PASSWORD" {
+  type = string
+}
+
 variable "TFC_WORKSPACE_NAME" {
   type = string
 }
