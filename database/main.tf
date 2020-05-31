@@ -70,17 +70,18 @@ resource "azurerm_app_service" "myapp" {
   app_service_plan_id = azurerm_app_service_plan.default.id
 
   site_config {
-    app_command_line = "node app.js"
+    app_command_line  = "node app.js"
     linux_fx_version  = "DOCKER|pomatti.azurecr.io/my-app:latest"
+    always_on         = "true"
   }
 
-  # app_settings = {
-  #   #"DOCKER_ENABLE_CI" = "true"
-  #   #"WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
-  #   #"DOCKER_REGISTRY_SERVER_PASSWORD"     = var.CONTAINER_REGISTRY_PASSWORD
-  #   #"DOCKER_REGISTRY_SERVER_URL"          = "https://pomatti.azurecr.io"
-  #   #"DOCKER_REGISTRY_SERVER_USERNAME"     = "pomatti"
-  # }  
+  app_settings = {
+    "DOCKER_ENABLE_CI" = "true"
+    "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
+    "DOCKER_REGISTRY_SERVER_PASSWORD"     = var.CONTAINER_REGISTRY_PASSWORD
+    "DOCKER_REGISTRY_SERVER_URL"          = "https://pomatti.azurecr.io"
+    "DOCKER_REGISTRY_SERVER_USERNAME"     = "pomatti"
+  }  
 
   lifecycle {
     ignore_changes = [
