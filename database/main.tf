@@ -63,28 +63,28 @@ resource "azurerm_app_service_plan" "default" {
   }
 }
 
-# resource "azurerm_app_service" "myapp" {
-#   name                = "app-myapp-terraform"
-#   location            = azurerm_resource_group.group.location
-#   resource_group_name = azurerm_resource_group.group.name
-#   app_service_plan_id = azurerm_app_service_plan.default.id
+resource "azurerm_app_service" "myapp" {
+  name                = "app-myapp-terraform"
+  location            = azurerm_resource_group.group.location
+  resource_group_name = azurerm_resource_group.group.name
+  app_service_plan_id = azurerm_app_service_plan.default.id
 
-#   site_config {
-#     app_command_line = "node app.js"
-#     linux_fx_version  = "DOCKER|pomatti.azurecr.io/my-app:latest"
-#   }
+  site_config {
+    app_command_line = "node app.js"
+    linux_fx_version  = "DOCKER|pomatti.azurecr.io/my-app:latest"
+  }
 
-#   app_settings = {
-#     #"DOCKER_ENABLE_CI" = "true"
-#     #"WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
-#     "DOCKER_REGISTRY_SERVER_PASSWORD"     = var.CONTAINER_REGISTRY_PASSWORD
-#     "DOCKER_REGISTRY_SERVER_URL"          = "https://pomatti.azurecr.io"
-#     "DOCKER_REGISTRY_SERVER_USERNAME"     = "pomatti"
-#   }  
+  # app_settings = {
+  #   #"DOCKER_ENABLE_CI" = "true"
+  #   #"WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
+  #   #"DOCKER_REGISTRY_SERVER_PASSWORD"     = var.CONTAINER_REGISTRY_PASSWORD
+  #   #"DOCKER_REGISTRY_SERVER_URL"          = "https://pomatti.azurecr.io"
+  #   #"DOCKER_REGISTRY_SERVER_USERNAME"     = "pomatti"
+  # }  
 
-#   lifecycle {
-#     ignore_changes = [
-#       site_config.0.linux_fx_version, # deployments are made outside of Terraform
-#     ]
-#   }
-#}
+  lifecycle {
+    ignore_changes = [
+      site_config.0.linux_fx_version, # deployments are made outside of Terraform
+    ]
+  }
+}
