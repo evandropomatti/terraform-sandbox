@@ -87,4 +87,4 @@ resource "azurerm_app_service_plan" "default" {
 #       site_config.0.linux_fx_version, # deployments are made outside of Terraform
 #     ]
 #   }
-}
+#}
